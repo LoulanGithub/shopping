@@ -2,10 +2,12 @@ package controller.brand;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import entity.PageResult;
+import entity.Result;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pojo.TbBrand;
 import projectInterface.BrandService;
 
 /*********************************************************
@@ -54,5 +56,30 @@ public class BrandController
 	public String login ()
 	{
 		return "/admin/brand.html";
+	}
+
+	/**
+	 * @Description -保存一个brand对象
+	 * @Date        -2018/10/11  0:17
+	 * @para        -
+	 * */
+	@RequestMapping("/add")
+	public Result addBrand(@RequestBody TbBrand tbBrand)
+	{
+		try
+		{
+			int brandFlag = brandService.addBrand(tbBrand);
+			if(brandFlag <= 0)
+			{
+				return new Result(false, "数据保存失败");
+			}
+			else
+			{
+				return new Result(true, "数据保存成功");
+			}
+		} catch (Exception ex)
+		{
+			return new Result(false, "数据保存失败");
+		}
 	}
 }

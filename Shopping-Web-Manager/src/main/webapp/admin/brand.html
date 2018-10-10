@@ -43,6 +43,7 @@
                 }
             };
 
+            //分页查询数据
             $scope.reloadList=function(){
                 //切换页码
                 $scope.findPage( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
@@ -61,6 +62,21 @@
                     }
                 );
             }
+
+            //数据保存
+            $scope.save = function (){
+                $http.post("../brand/add.action",$scope.entity).success(
+                    function (response) {
+						if(response.flag) {
+							$scope.reloadList();
+                        }
+                        else
+						{
+						    alert(response.message);
+						}
+                    }
+				);
+			}
         });
 
 
