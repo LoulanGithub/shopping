@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+    <!--c3p0驱动数据源连接池配置配置// FIXME 2018/7/13 -->
+    <!--<context:property-placeholder location="classpath:mybatisSql.properties"/>-->
+    <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" destroy-method="close">
+        <property name="url" value="jdbc:mysql://127.0.0.1:3306/shopping?characterEncoding=utf-8" />
+        <property name="username" value="root" />
+        <property name="password" value="root" />
+        <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+        <property name="maxActive" value="10" />
+        <property name="minIdle" value="5" />
+    </bean>
+
+    <!--事务提交-->
+    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <property name="dataSource" ref="dataSource"></property>
+    </bean>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
+
+    <!--spring管理sqlsession工厂,要配置号mybatis.xml文件-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+
+        <property name="configLocation" value="classpath:Mybatis.xml"/>
+
+        <!--<property name="mapperLocations" value=""/>-->
+    </bean>
+
+
+    <!--
+        使用包扫描的方式批量引入Mapper,并创建bean对象
+        注意mapper的java文件和xml文件必须写在一个文件夹下面，maven比较特殊，注意了
+        扫描后引用的时候可以使用类名,首字母小写.
+     -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <!-- 指定要扫描的包的全路径名称,如果有多个包用英文状态下的逗号分隔 -->
+        <property name="basePackage" value="mapper"/>
+    </bean>
+</beans>
