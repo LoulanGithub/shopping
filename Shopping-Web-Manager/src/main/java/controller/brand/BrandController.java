@@ -63,6 +63,7 @@ public class BrandController
 	 * @Date        -2018/10/11  0:17
 	 * @para        -
 	 * */
+	@ResponseBody
 	@RequestMapping("/add")
 	public Result addBrand(@RequestBody TbBrand tbBrand)
 	{
