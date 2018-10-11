@@ -83,4 +83,43 @@ public class BrandController
 			return new Result(false, "数据保存失败");
 		}
 	}
+
+	/**
+	 * @Description -更新一个brand对象
+	 * @Date        -2018/10/11  0:17
+	 * @para        -
+	 * */
+	@ResponseBody
+	@RequestMapping("/update")
+	public Result updateBrand(@RequestBody TbBrand tbBrand)
+	{
+		try
+		{
+			int brandFlag = brandService.updateBrand(tbBrand);
+			if(brandFlag <= 0)
+			{
+				return new Result(false, "数据更新失败");
+			}
+			else
+			{
+				return new Result(true, "数据更新成功");
+			}
+		} catch (Exception ex)
+		{
+			return new Result(false, "数据更新失败");
+		}
+	}
+
+	/**
+	 * @Description -根据id查找品牌对象
+	 * @Date        -2018/10/11  0:17
+	 * @para        -
+	 * */
+	@ResponseBody
+	@RequestMapping("/findById")
+	public TbBrand findById (String id)
+	{
+		TbBrand byId = brandService.findById(id);
+		return byId;
+	}
 }

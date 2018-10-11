@@ -24,4 +24,18 @@ public interface BrandDao
 	 * @para        -tbBrand:对象参数
 	 * */
 	public int addBrand (TbBrand tbBrand);
+
+	/**
+	 * @Description -更新一个品牌对象
+	 * @Date        -2018/10/11  23:56
+	 * @para        -
+	 * */
+	public int updateBrand(TbBrand tbBrand);
+
+	/**
+	 * @Description -更具id找品牌对象
+	 * @Date        -2018/10/11  22:46
+	 * @para        -
+	 * */
+	public TbBrand findById (Long id);
 }

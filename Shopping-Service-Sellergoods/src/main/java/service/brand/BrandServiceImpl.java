@@ -40,4 +40,24 @@ public class BrandServiceImpl implements BrandService
 	{
 		return brandDao.addBrand(tbBrand);
 	}
+
+	/**
+	 * @Description -更新一个品牌对象
+	 * @Date        -2018/10/11  23:55
+	 * @para        -
+	 * */
+	public int updateBrand(TbBrand tbBrand)
+	{
+		return brandDao.updateBrand(tbBrand);
+	}
+
+	/**
+	 * @Description -更具id找品牌对象
+	 * @Date        -2018/10/11  22:48
+	 * @para        -
+	 * */
+	public TbBrand findById(String id)
+	{
+		return brandDao.findById(Long.parseLong(id));
+	}
 }

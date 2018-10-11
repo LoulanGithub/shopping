@@ -24,4 +24,18 @@ public interface BrandService
 	 * @para        -
 	 * */
 	public int addBrand (TbBrand tbBrand);
+
+	/**
+	 * @Description -保存一个品牌对象
+	 * @Date        -2018/10/11  0:07
+	 * @para        -
+	 * */
+	public int updateBrand (TbBrand tbBrand);
+
+	/**
+	 * @Description -更具id找品牌对象
+	 * @Date        -2018/10/11  22:46
+	 * @para        -
+	 * */
+	public TbBrand findById (String id);
 }

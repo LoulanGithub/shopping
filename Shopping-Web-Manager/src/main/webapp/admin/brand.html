@@ -32,7 +32,7 @@
         var apps = angular.module('pinyougou', ['pagination']);
         apps.controller("brandController", function ($scope, $http) {
 
-            //   分页配置
+            // 分页配置
             $scope.paginationConf = {
                 currentPage: 1,
                 totalItems: 0,
@@ -65,7 +65,12 @@
 
             //数据保存
             $scope.save = function (){
-                $http.post('../brand/add.action',$scope.entity).success(
+                var method = "add";
+                if ($scope.entity.id != null && $scope.entity.id!="")
+				{
+                    method = "update";
+				}
+                $http.post("../brand/"+method+".action",$scope.entity).success(
                     function (response) {
 						if(response.flag) {
 							$scope.reloadList();
@@ -77,6 +82,19 @@
                     }
 				);
 			}
+
+			//根据id查找品牌对象
+			$scope.findById = function (id) {
+				$http.get("../brand/findById.action?id="+id).success(
+				    function (response) {
+                        $scope.entity = response;
+                    }
+				).error(
+				    function () {
+                        alert("数据读取失败");
+                    }
+				);
+            }
         });
 
 

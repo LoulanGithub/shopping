@@ -49,6 +49,27 @@ public class BrandDaoImpl implements BrandDao
 	 * */
 	public int addBrand (TbBrand tbBrand)
 	{
-		return brandMapper.insert(tbBrand);
+		return brandMapper.insertSelective(tbBrand);
+	}
+
+	/**
+	 * @Description -更新一个品牌对象
+	 * @Date        -2018/10/11  23:56
+	 * @para        -
+	 * */
+	public int updateBrand(TbBrand tbBrand)
+	{
+		//updateByPrimaryKeySelective会对字段进行判断再更新(如果为Null就忽略更新)，如果你只想更新某一字段，可以用这个方法。
+		return brandMapper.updateByPrimaryKeySelective(tbBrand);
+	}
+
+	/**
+	 * @Description -更具id找品牌对象
+	 * @Date        -2018/10/11  22:48
+	 * @para        -
+	 * */
+	public TbBrand findById(Long id)
+	{
+		return brandMapper.selectByPrimaryKey(id);
 	}
 }
