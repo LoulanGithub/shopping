@@ -3,6 +3,8 @@ package dao.brand;
 import entity.PageResult;
 import pojo.TbBrand;
 
+import java.util.List;
+
 /*********************************************************
  ** @Description: TODO
  ** @Date: Created in 2018/10/11  0:01
@@ -16,7 +18,7 @@ public interface BrandDao
 	 * @para        -pageNum：当前页码
 	 * 				 pageSize:总页数
 	 * */
-	public PageResult findPage(Integer pageNum, Integer pageSize);
+	public PageResult findPage(Integer pageNum, Integer pageSize,TbBrand tbBrand);
 
 	/**
 	 * @Description -添加一个brand对象
@@ -38,4 +40,11 @@ public interface BrandDao
 	 * @para        -
 	 * */
 	public TbBrand findById (Long id);
+
+	/**
+	 * @Description -品牌删除
+	 * @Date        -2018/10/13  1:26
+	 * @para        -
+	 * */
+	public int deleteBrand(List<Long> ids);
 }

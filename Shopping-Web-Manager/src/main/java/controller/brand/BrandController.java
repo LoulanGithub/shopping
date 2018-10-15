@@ -41,9 +41,9 @@ public class BrandController
 	 * */
 	@RequestMapping("/getBrandMessage")
 	@ResponseBody
-	public PageResult getBrandMessage(int pageNum,int pageSize)
+	public PageResult getBrandMessage(int pageNum,int pageSize,@RequestBody TbBrand tbBrand)
 	{
-		PageResult page = brandService.findPage(pageNum, pageSize);
+		PageResult page = brandService.findPage(pageNum, pageSize,tbBrand);
 		return page;
 	}
 
@@ -121,5 +121,28 @@ public class BrandController
 	{
 		TbBrand byId = brandService.findById(id);
 		return byId;
+	}
+
+	/**
+	 * @Description -品牌数据删除
+	 * @Date        -2018/10/13  0:49
+	 * @para        -
+	 * */
+	@ResponseBody
+	@RequestMapping("/delete")
+	public String delete (Long[] ids)
+	{
+		try
+		{
+			int deleteFlag = brandService.deleteBrand(ids);
+			if (deleteFlag <= 0)
+			{
+				return "数据删除失败";
+			}
+		} catch (Exception ex)
+		{
+			return "数据删除失败";
+		}
+		return "数据删除成功";
 	}
 }

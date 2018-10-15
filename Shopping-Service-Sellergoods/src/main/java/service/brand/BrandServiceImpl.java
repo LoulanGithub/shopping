@@ -7,6 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import pojo.TbBrand;
 import projectInterface.BrandService;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /*********************************************************
  ** @Description: TODO
  ** @Date: Created in 2018/9/28  23:53
@@ -26,9 +29,9 @@ public class BrandServiceImpl implements BrandService
 	 * @para -pageNum：当前页码
 	 * pageSize:总页数
 	 */
-	public PageResult findPage(Integer pageNum, Integer pageSize)
+	public PageResult findPage(Integer pageNum, Integer pageSize,TbBrand tbBrand)
 	{
-		return brandDao.findPage(pageNum, pageSize);
+		return brandDao.findPage(pageNum, pageSize,tbBrand);
 	}
 
 	/**
@@ -59,5 +62,21 @@ public class BrandServiceImpl implements BrandService
 	public TbBrand findById(String id)
 	{
 		return brandDao.findById(Long.parseLong(id));
+	}
+
+	/**
+	 * @Description -删除品牌对象
+	 * @Date        -2018/10/13  1:27
+	 * @para        -
+	 * */
+	public int deleteBrand(Long[] ids)
+	{
+		List<Long> longs = new ArrayList<>();
+		for (Long id : ids)
+		{
+			longs.add(id);
+		}
+
+		return brandDao.deleteBrand(longs);
 	}
 }

@@ -16,7 +16,7 @@ public interface BrandService
 	 * @para        -pageNum：当前页码
 	 * 				 pageSize:总页数
 	 * */
-	public PageResult findPage(Integer pageNum, Integer pageSize);
+	public PageResult findPage(Integer pageNum, Integer pageSize,TbBrand tbBrand);
 
 	/**
 	 * @Description -保存一个品牌对象
@@ -38,4 +38,11 @@ public interface BrandService
 	 * @para        -
 	 * */
 	public TbBrand findById (String id);
+
+	/**
+	 * @Description -删除品牌对象
+	 * @Date        -2018/10/13  1:27
+	 * @para        -
+	 * */
+	public int deleteBrand(Long[] ids);
 }

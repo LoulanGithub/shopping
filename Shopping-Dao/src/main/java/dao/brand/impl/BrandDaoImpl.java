@@ -10,6 +10,7 @@ import org.springframework.stereotype.Component;
 import pojo.TbBrand;
 import pojo.TbBrandExample;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /*********************************************************
@@ -28,11 +29,19 @@ public class BrandDaoImpl implements BrandDao
 	 * @para        -pageNum：当前页码
 	 * 				 pageSize:总页数
 	 * */
-	public PageResult findPage(Integer pageNum, Integer pageSize)
+	public PageResult findPage(Integer pageNum, Integer pageSize,TbBrand tbBrand)
 	{
 		PageHelper.startPage(pageNum, pageSize);
 
 		TbBrandExample brandExample = new TbBrandExample();
+		TbBrandExample.Criteria criteria = brandExample.createCriteria();
+
+		if (tbBrand != null)
+		{
+			criteria.andNameLike("%" + tbBrand.getName() + "%");
+			criteria.andFirstCharLike("%"+tbBrand.getFirstChar()+"%");
+		}
+
 		List<TbBrand> tbBrandList = brandMapper.selectByExample(brandExample);
 
 		PageInfo<TbBrand> brandPage = new PageInfo<TbBrand>(tbBrandList);
@@ -71,5 +80,23 @@ public class BrandDaoImpl implements BrandDao
 	public TbBrand findById(Long id)
 	{
 		return brandMapper.selectByPrimaryKey(id);
+	}
+
+	/**
+	 * @Description -品牌对象的删除
+	 * @Date        -2018/10/13  1:24
+	 * @para        -
+	 * */
+	public int deleteBrand (List<Long> ids)
+	{
+
+		TbBrandExample tbBrandExample = new TbBrandExample();
+		TbBrandExample.Criteria criteria = tbBrandExample.createCriteria();
+
+		criteria.andIdIn(ids);
+
+		int deleteFlag = brandMapper.deleteByExample(tbBrandExample);
+
+		return deleteFlag;
 	}
 }

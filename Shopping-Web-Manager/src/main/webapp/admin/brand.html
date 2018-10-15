@@ -24,11 +24,7 @@
 	<script type="text/javascript" src="../js/service/brandService.js"></script>
 
 	<script type="text/javascript">
-		$(function () {
-
-        });
-
-		//angularJs定义模块
+        //angularJs定义模块
         var apps = angular.module('pinyougou', ['pagination']);
         apps.controller("brandController", function ($scope, $http) {
 
@@ -37,24 +33,26 @@
                 currentPage: 1,
                 totalItems: 0,
                 itemsPerPage: 5,
-                perPageOptions: [5,10, 20, 30, 40, 50],
-                onChange: function(){
+                perPageOptions: [5, 10, 20, 30, 40, 50],
+                onChange: function () {
                     $scope.reloadList();//重新加载
                 }
             };
 
             //分页查询数据
-            $scope.reloadList=function(){
+            $scope.reloadList = function () {
                 //切换页码
-                $scope.findPage( $scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
+                $scope.findPage($scope.paginationConf.currentPage, $scope.paginationConf.itemsPerPage);
             }
 
+            $scope.searchEntity = {name:"",firstChar:""};
+
             //ajax查询分页数据
-            $scope.findPage = function (pageNum,pageSize) {
-                $http.get('../brand/getBrandMessage.action?pageNum='+pageNum+'&pageSize='+pageSize).success(
+            $scope.findPage = function (pageNum, pageSize) {
+                $http.post('../brand/getBrandMessage.action?pageNum=' + pageNum + '&pageSize=' + pageSize,$scope.searchEntity).success(
                     function (response) {
                         $scope.list = response.rows;
-                        $scope.paginationConf.totalItems=response.total;//更新总记录数
+                        $scope.paginationConf.totalItems = response.total;//更新总记录数
                     }
                 ).error(
                     function () {
@@ -64,41 +62,78 @@
             }
 
             //数据保存
-            $scope.save = function (){
+            $scope.save = function () {
                 var method = "add";
-                if ($scope.entity.id != null && $scope.entity.id!="")
-				{
+                if ($scope.entity.id != null && $scope.entity.id != "") {
                     method = "update";
-				}
-                $http.post("../brand/"+method+".action",$scope.entity).success(
+                }
+                $http.post("../brand/" + method + ".action", $scope.entity).success(
                     function (response) {
-						if(response.flag) {
-							$scope.reloadList();
+                        if (response.flag) {
+                            $scope.reloadList();
                         }
-                        else
-						{
-						    alert(response.message);
-						}
+                        else {
+                            alert(response.message);
+                        }
                     }
-				);
-			}
+                );
+            }
 
-			//根据id查找品牌对象
-			$scope.findById = function (id) {
-				$http.get("../brand/findById.action?id="+id).success(
-				    function (response) {
+            //根据id查找品牌对象
+            $scope.findById = function (id) {
+                $http.get("../brand/findById.action?id=" + id).success(
+                    function (response) {
                         $scope.entity = response;
                     }
-				).error(
-				    function () {
+                ).error(
+                    function () {
                         alert("数据读取失败");
                     }
-				);
+                );
+            }
+
+
+            $scope.selectIds = [];//选中的ID集合
+            //复选框点击事件
+            $scope.updateSelection = function ($event, id) {
+                if ($event.target.checked) {//如果是被选中,则增加到数组
+                    $scope.selectIds.push(id);
+                } else {
+                    var idx = $scope.selectIds.indexOf(id);
+                    $scope.selectIds.splice(idx, 1);//删除
+                }
+            }
+
+
+            //删除
+            $scope.dele = function () {
+                $.post({
+                    url: "../brand/delete.action",
+                    data: {ids: $scope.selectIds.toString()},
+                    success: function (data) {
+                        $scope.selectedIds = [];
+                        $scope.reloadList();
+                    },
+                    error: function () {
+                        alert("数据删除失败");
+                    }
+
+                });
+                /*$scope.dele=function(){
+					$http.get("../brand/delete.action?ids=" + $scope.selectedIds).success(
+						function(response){
+							if(response.flag){
+								$scope.reloadList();
+								$scope.selectedIds = [];
+							}else{
+								alert(response.message);
+							}
+						}
+					);
+				}*/
+
             }
         });
-
-
-
 	</script>
 </head>
 <body class="hold-transition skin-red sidebar-mini" ng-app="pinyougou" ng-controller="brandController">
@@ -130,8 +165,8 @@
 			</div>
 			<div class="box-tools pull-right">
 				<div class="has-feedback">
-					品牌名称:<input type="text" ng-model="searchEntity.name"> 品牌首字母:<input type="text"
-																					   ng-model="searchEntity.firstChar">
+					品牌名称:<input type="text" ng-model="searchEntity.name">
+					品牌首字母:<input type="text" ng-model="searchEntity.firstChar">
 					<input class="btn btn-default" ng-click="reloadList()" type="button" value="查询">
 				</div>
 			</div>
