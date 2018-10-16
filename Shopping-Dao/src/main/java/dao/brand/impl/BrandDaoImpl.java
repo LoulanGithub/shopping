@@ -35,7 +35,6 @@ public class BrandDaoImpl implements BrandDao
 
 		TbBrandExample brandExample = new TbBrandExample();
 		TbBrandExample.Criteria criteria = brandExample.createCriteria();
-
 		if (tbBrand != null)
 		{
 			criteria.andNameLike("%" + tbBrand.getName() + "%");
