@@ -6,7 +6,7 @@ import pojo.TbBrand;
 import java.util.List;
 
 /*********************************************************
- ** @Description: TODO
+ ** @Description: 品牌管理dao层接口
  ** @Date: Created in 2018/10/11  0:01
  ** @author: 杨
  *********************************************************/

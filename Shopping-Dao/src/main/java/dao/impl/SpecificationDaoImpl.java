@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 /*********************************************************
- ** @Description: TODO
+ ** @Description: 规格dao层实现
  ** @Date: Created in 2018/10/17  14:31
  ** @author: 杨
  *********************************************************/
@@ -56,7 +56,6 @@ public class SpecificationDaoImpl implements SpecificationDao
 
 		return page;
 	}
-
 	/**
 	 * @Description -根据主键id查询规格对象
 	 * @Date        -2018/10/17  15:44

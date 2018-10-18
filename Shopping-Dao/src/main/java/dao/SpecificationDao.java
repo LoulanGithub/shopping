@@ -7,7 +7,7 @@ import pojo.specificationOption.TbSpecificationOption;
 import java.util.List;
 
 /*********************************************************
- ** @Description: TODO
+ ** @Description: 规格的dao层接口
  ** @Date: Created in 2018/10/17  14:30
  ** @author: 杨
  *********************************************************/
