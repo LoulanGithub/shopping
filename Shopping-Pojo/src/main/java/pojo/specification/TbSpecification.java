@@ -1,13 +1,11 @@
-package pojo;
+package pojo.specification;
 
 import java.io.Serializable;
 
-public class TbBrand implements Serializable {
+public class TbSpecification implements Serializable {
     private Long id;
 
-    private String name;
-
-    private String firstChar;
+    private String specName;
 
     private static final long serialVersionUID = 1L;
 
@@ -19,20 +17,12 @@ public class TbBrand implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getSpecName() {
+        return specName;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
-    }
-
-    public String getFirstChar() {
-        return firstChar;
-    }
-
-    public void setFirstChar(String firstChar) {
-        this.firstChar = firstChar == null ? null : firstChar.trim();
+    public void setSpecName(String specName) {
+        this.specName = specName == null ? null : specName.trim();
     }
 
     @Override
@@ -42,8 +32,7 @@ public class TbBrand implements Serializable {
         sb.append(" [");
         sb.append("Hash = ").append(hashCode());
         sb.append(", id=").append(id);
-        sb.append(", name=").append(name);
-        sb.append(", firstChar=").append(firstChar);
+        sb.append(", specName=").append(specName);
         sb.append(", serialVersionUID=").append(serialVersionUID);
         sb.append("]");
         return sb.toString();
@@ -60,10 +49,9 @@ public class TbBrand implements Serializable {
         if (getClass() != that.getClass()) {
             return false;
         }
-        TbBrand other = (TbBrand) that;
+        TbSpecification other = (TbSpecification) that;
         return (this.getId() == null ? other.getId() == null : this.getId().equals(other.getId()))
-            && (this.getName() == null ? other.getName() == null : this.getName().equals(other.getName()))
-            && (this.getFirstChar() == null ? other.getFirstChar() == null : this.getFirstChar().equals(other.getFirstChar()));
+            && (this.getSpecName() == null ? other.getSpecName() == null : this.getSpecName().equals(other.getSpecName()));
     }
 
     @Override
@@ -71,8 +59,7 @@ public class TbBrand implements Serializable {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
-        result = prime * result + ((getName() == null) ? 0 : getName().hashCode());
-        result = prime * result + ((getFirstChar() == null) ? 0 : getFirstChar().hashCode());
+        result = prime * result + ((getSpecName() == null) ? 0 : getSpecName().hashCode());
         return result;
     }
 }

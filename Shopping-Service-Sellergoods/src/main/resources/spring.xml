@@ -10,11 +10,11 @@
        http://code.alibabatech.com/schema/dubbo
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <!--<context:component-scan base-package="service"/>-->
+    <context:component-scan base-package="service"/>
 
     <dubbo:application name="ShoppingServiceSellergoods"/>
     <dubbo:registry address="zookeeper://192.168.47.128:2181"/>
-    <dubbo:annotation package="service.brand"/>
+    <dubbo:annotation package="service"/>
 
     <import resource="classpath*:springDao.xml"/>
 

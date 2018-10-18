@@ -1,4 +1,4 @@
-package controller.brand;
+package controller;
 
 import com.alibaba.dubbo.config.annotation.Reference;
 import entity.PageResult;

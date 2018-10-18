@@ -23,8 +23,8 @@
         //angularJs定义模块
         var app = angular.module('pinyougou', ['pagination','loulan']);
 	</script>
-	<script type="text/javascript" src="../js/service/brandService.js"></script>
-	<script type="text/javascript" src="../js/controller/brandController.js"></script>
+	<script type="text/javascript" src="../js/service/specificationService.js"></script>
+	<script type="text/javascript" src="../js/controller/specificationController.js"></script>
 	<script type="text/javascript" src="../js/controller/PYGbaseController.js"></script>
 </head>
 
@@ -57,8 +57,8 @@
 			</div>
 			<div class="box-tools pull-right">
 				<div class="has-feedback">
-					规格名称：<input>
-					<button class="btn btn-default">查询</button>
+					规格名称：<input ng-model="searchEntity.specName">
+					<button class="btn btn-default" ng-click="reloadList()" >查询</button>
 				</div>
 			</div>
 			<!--工具栏/-->
@@ -110,7 +110,9 @@
 					<table class="table table-bordered table-striped" width="800px">
 						<tr>
 							<td>规格名称</td>
-							<td><input class="form-control" placeholder="规格名称" ng-model="entity.specification.specName">
+							<td>
+								<input type="hidden" ng-model="entity.specification.id">
+								<input class="form-control" placeholder="规格名称" ng-model="entity.specification.specName">
 							</td>
 						</tr>
 					</table>
@@ -136,6 +138,7 @@
 						<tr ng-repeat="pojo in entity.specificationOptionList">
 
 							<td>
+								<input type="hidden" ng-model="pojo.id">
 								<input ng-model="pojo.optionName" class="form-control" placeholder="规格选项">
 							</td>
 							<td>
@@ -143,7 +146,7 @@
 							</td>
 							<td>
 								<button type="button" class="btn btn-default" title="删除"
-										ng-click="deleteTableRow($index)"><i class="fa fa-trash-o"></i> 删除
+										ng-click="deleteTableRow($index,pojo.id)"><i class="fa fa-trash-o"></i> 删除
 								</button>
 							</td>
 						</tr>

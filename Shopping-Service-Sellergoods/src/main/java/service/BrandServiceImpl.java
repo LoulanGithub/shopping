@@ -1,7 +1,7 @@
-package service.brand;
+package service;
 
 import com.alibaba.dubbo.config.annotation.Service;
-import dao.brand.BrandDao;
+import dao.BrandDao;
 import entity.PageResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import pojo.TbBrand;

@@ -1,4 +1,4 @@
-package dao.brand;
+package dao;
 
 import entity.PageResult;
 import pojo.TbBrand;

@@ -1,16 +1,16 @@
-package pojo;
+package pojo.specification;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class TbBrandExample {
+public class TbSpecificationExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public TbBrandExample() {
+    public TbSpecificationExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -164,143 +164,73 @@ public class TbBrandExample {
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNull() {
-            addCriterion("name is null");
+        public Criteria andSpecNameIsNull() {
+            addCriterion("spec_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andNameIsNotNull() {
-            addCriterion("name is not null");
+        public Criteria andSpecNameIsNotNull() {
+            addCriterion("spec_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andNameEqualTo(String value) {
-            addCriterion("name =", value, "name");
+        public Criteria andSpecNameEqualTo(String value) {
+            addCriterion("spec_name =", value, "specName");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotEqualTo(String value) {
-            addCriterion("name <>", value, "name");
+        public Criteria andSpecNameNotEqualTo(String value) {
+            addCriterion("spec_name <>", value, "specName");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThan(String value) {
-            addCriterion("name >", value, "name");
+        public Criteria andSpecNameGreaterThan(String value) {
+            addCriterion("spec_name >", value, "specName");
             return (Criteria) this;
         }
 
-        public Criteria andNameGreaterThanOrEqualTo(String value) {
-            addCriterion("name >=", value, "name");
+        public Criteria andSpecNameGreaterThanOrEqualTo(String value) {
+            addCriterion("spec_name >=", value, "specName");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThan(String value) {
-            addCriterion("name <", value, "name");
+        public Criteria andSpecNameLessThan(String value) {
+            addCriterion("spec_name <", value, "specName");
             return (Criteria) this;
         }
 
-        public Criteria andNameLessThanOrEqualTo(String value) {
-            addCriterion("name <=", value, "name");
+        public Criteria andSpecNameLessThanOrEqualTo(String value) {
+            addCriterion("spec_name <=", value, "specName");
             return (Criteria) this;
         }
 
-        public Criteria andNameLike(String value) {
-            addCriterion("name like", value, "name");
+        public Criteria andSpecNameLike(String value) {
+            addCriterion("spec_name like", value, "specName");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotLike(String value) {
-            addCriterion("name not like", value, "name");
+        public Criteria andSpecNameNotLike(String value) {
+            addCriterion("spec_name not like", value, "specName");
             return (Criteria) this;
         }
 
-        public Criteria andNameIn(List<String> values) {
-            addCriterion("name in", values, "name");
+        public Criteria andSpecNameIn(List<String> values) {
+            addCriterion("spec_name in", values, "specName");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotIn(List<String> values) {
-            addCriterion("name not in", values, "name");
+        public Criteria andSpecNameNotIn(List<String> values) {
+            addCriterion("spec_name not in", values, "specName");
             return (Criteria) this;
         }
 
-        public Criteria andNameBetween(String value1, String value2) {
-            addCriterion("name between", value1, value2, "name");
+        public Criteria andSpecNameBetween(String value1, String value2) {
+            addCriterion("spec_name between", value1, value2, "specName");
             return (Criteria) this;
         }
 
-        public Criteria andNameNotBetween(String value1, String value2) {
-            addCriterion("name not between", value1, value2, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharIsNull() {
-            addCriterion("first_char is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharIsNotNull() {
-            addCriterion("first_char is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharEqualTo(String value) {
-            addCriterion("first_char =", value, "firstChar");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharNotEqualTo(String value) {
-            addCriterion("first_char <>", value, "firstChar");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharGreaterThan(String value) {
-            addCriterion("first_char >", value, "firstChar");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharGreaterThanOrEqualTo(String value) {
-            addCriterion("first_char >=", value, "firstChar");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharLessThan(String value) {
-            addCriterion("first_char <", value, "firstChar");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharLessThanOrEqualTo(String value) {
-            addCriterion("first_char <=", value, "firstChar");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharLike(String value) {
-            addCriterion("first_char like", value, "firstChar");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharNotLike(String value) {
-            addCriterion("first_char not like", value, "firstChar");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharIn(List<String> values) {
-            addCriterion("first_char in", values, "firstChar");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharNotIn(List<String> values) {
-            addCriterion("first_char not in", values, "firstChar");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharBetween(String value1, String value2) {
-            addCriterion("first_char between", value1, value2, "firstChar");
-            return (Criteria) this;
-        }
-
-        public Criteria andFirstCharNotBetween(String value1, String value2) {
-            addCriterion("first_char not between", value1, value2, "firstChar");
+        public Criteria andSpecNameNotBetween(String value1, String value2) {
+            addCriterion("spec_name not between", value1, value2, "specName");
             return (Criteria) this;
         }
     }
