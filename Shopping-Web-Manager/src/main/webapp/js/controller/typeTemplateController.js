@@ -29,14 +29,33 @@ app.controller("typeTemplateController",function ($scope, $controller,typeTempla
 
     //点击修改按钮
     $scope.findOne = function (id) {
-        // var jsons = JSON.parse($scope.entity);
-        console.info($scope.list.length)
-        for (var i=0;i<$scope.list.length;i++) {
-            if ($scope.list[i].id == id) {
-                $scope.entity = $scope.list[i];
-                $scope.brandList = JSON.parse(str$scope.list[i].brandIds);
+        console.info($scope.entity)
+        typeTemplateService.findPage(1,1,"{id:'"+id+"'}").success(
+            function (response) {
+                $scope.entity= response.rows[0];
+                var d1=  JSON.parse($scope.entity.brandIds);//转换品牌列表
+                var d2=  JSON.parse($scope.entity.specIds);//转换规格列表
+                $('#test1').select2({
+                    allowClear: true,                  //有占位符时允许清除
+                    tags: true,
+                    data: d1,
+                    multiple:true,
+
+                });
+                $('#test1').select2('val',"");
+                $('#test2').select2({
+                    allowClear: true,                  //有占位符时允许清除
+                    tags: true,
+                    data: d2,
+                    multiple:true,
+
+                });
+                $('#test2').select2('val',"");
+
+                $scope.entity.customAttributeItems= JSON.parse($scope.entity.customAttributeItems);//转换扩展属性
+
             }
-        }
+        );
     }
 
 });

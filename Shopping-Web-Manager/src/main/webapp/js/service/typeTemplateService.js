@@ -6,4 +6,6 @@ app.service("typeTemplateService",function ($http) {
     {
         return $http.post('../typeTemplate/getTypeTemplateMessage.action?pageNum=' + pageNum + '&pageSize=' + pageSize, searchContent);
     }
+
+
 });
