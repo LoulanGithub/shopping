@@ -1,0 +1,35 @@
+package mapper;
+
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
+import pojo.seller.TbSeller;
+import pojo.seller.TbSellerExample;
+
+import java.util.List;
+
+public interface TbSellerMapper
+{
+    long countByExample(TbSellerExample example);
+
+    int deleteByExample(TbSellerExample example);
+
+    int deleteByPrimaryKey(String sellerId);
+
+    int insert(TbSeller record);
+
+    int insertSelective(TbSeller record);
+
+    List<TbSeller> selectByExampleWithRowbounds(TbSellerExample example, RowBounds rowBounds);
+
+    List<TbSeller> selectByExample(TbSellerExample example);
+
+    TbSeller selectByPrimaryKey(String sellerId);
+
+    int updateByExampleSelective(@Param("record") TbSeller record, @Param("example") TbSellerExample example);
+
+    int updateByExample(@Param("record") TbSeller record, @Param("example") TbSellerExample example);
+
+    int updateByPrimaryKeySelective(TbSeller record);
+
+    int updateByPrimaryKey(TbSeller record);
+}

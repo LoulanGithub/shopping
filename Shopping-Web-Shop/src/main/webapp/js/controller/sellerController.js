@@ -42,7 +42,7 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 		serviceObject.success(
 			function(response){
 				if(response.flag){
-					//重新查询 
+					//重新查询
 		        	$scope.reloadList();//重新加载
 				}else{
 					alert(response.message);
@@ -54,6 +54,7 @@ app.controller('sellerController' ,function($scope,$controller   ,sellerService)
 	$scope.add = function(){
 		sellerService.add( $scope.entity  ).success(
 			function(response){
+				console.info (response)
 				if(response.flag){
 					// 重新查询 
 		        	// $scope.reloadList();//重新加载

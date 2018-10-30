@@ -25,6 +25,10 @@ public class Result implements Serializable
 		this.message = message;
 	}
 
+	public Result()
+	{
+	}
+
 	public boolean isFlag()
 	{
 		return flag;
